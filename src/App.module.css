@@ -1,8 +1,16 @@
 body {
-    background-color: grey;
+    background-color: #19ffec;
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+}
+
+.home {
     display: flex;
     flex-direction: column;
     justify-content: center;

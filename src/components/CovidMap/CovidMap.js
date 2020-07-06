@@ -1,9 +1,13 @@
 import React from 'react'
 
-export const CovidMap = () => {
+import styles from './CovidMap.module.css';
+
+const CovidMap = () => {
     return (
-        <div>
+        <div className={styles.container}>
             <h1>COVID-19 Map</h1>
         </div>
     )
 }
+
+export default CovidMap;

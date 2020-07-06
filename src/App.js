@@ -5,7 +5,8 @@ import styles from './App.module.css';
 import CardsSummary from './components/CardsSummary/CardsSummary';
 import MenuBar from './components/MenuBar/MenuBar';
 import CountryPicker from './components/CountryPicker/CountryPicker';
-import { CovidMap } from './components/CovidMap/CovidMap'
+import CovidMap from './components/CovidMap/CovidMap';
+import { ChartsGlobal } from './components/ChartsGlobal/ChartsGlobal';
 
 import { fetchData } from './API';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -40,14 +41,25 @@ class App extends React.Component {
                     <Route 
                         path="/" 
                         exact 
-                        component={ () => <CardsSummary data={data} />} 
+                        component={ () => 
+                            <div className={styles.home}>
+                                <CardsSummary data={data} />
+                                <ChartsGlobal />
+                            </div>
+                        } 
                     />                           
                     <Route 
                         path="/country" 
-                        component={ () => <CountryPicker handleCountryChange={this.handleCountryChange} />} 
+                        exact
+                        component={ () =>  
+                            <div> 
+                                <CountryPicker handleCountryChange={this.handleCountryChange} />
+                            </div>
+                        } 
                     />
                     <Route 
                         path="/map"
+                        exact
                         component={ () => <CovidMap />}
                     />
                     </Switch>
