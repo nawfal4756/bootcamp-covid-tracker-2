@@ -1,26 +1,61 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Import Components
+import CardsSummary from './components/CardsSummary/CardsSummary';
+import MenuBar from './components/MenuBar/MenuBar';
+import CountryPicker from './components/CountryPicker/CountryPicker';
+import { CovidMap } from './components/CovidMap/CovidMap'
+
+import { fetchData } from './API';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+class App extends React.Component {
+    state = {
+        data: {},
+        country: "",
+    };
+    
+    async componentDidMount() {
+        const fetchedData = await fetchData();
+
+
+        this.setState({ data: fetchedData })
+    }
+
+    handleCountryChange = async (country) => {
+        const data = await fetchData(country);
+
+        this.setState({data, country: country})
+    } 
+
+    render() {
+        const { data } = this.state
+
+        return (
+            <Router>
+                <div className={styles.container}>
+                    <MenuBar />
+                    <Switch>
+                    <Route 
+                        path="/" 
+                        exact 
+                        component={ () => <CardsSummary data={data} />} 
+                    />                           
+                    <Route 
+                        path="/country" 
+                        component={ () => <CountryPicker handleCountryChange={this.handleCountryChange} />} 
+                    />
+                    <Route 
+                        path="/map"
+                        component={ () => <CovidMap />}
+                    />
+                    </Switch>
+                </div>
+            </Router>
+            
+        )
+    }
 }
 
 export default App;
