@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const apiUrl = 'https://api.covid19api.com';
+const apiURL1 = 'https://api.covid19api.com';
 
 export const fetchData = async () => {
     try {
-        const {data: { Global, Date }} = await axios.get(`${apiUrl}/summary`);
+        const {data: { Global, Date }} = await axios.get(`${apiURL1}/summary`);
 
         return { Global, Date };
     } catch (error) {
@@ -14,14 +14,13 @@ export const fetchData = async () => {
 
 export const fetchCountries = async () => {
     try {
-        const {data} = await axios.get(`${apiUrl}/countries`)
+        const {data} = await axios.get(`${apiURL1}/countries`)
         
         return data.map((country) => country.Country);
     } catch (error) {
         console.log(error);
     }
 }
-
 
 const apiUrl2 = 'https://covid19.mathdro.id/api';
 

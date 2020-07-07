@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NativeSelect, FormControl} from '@material-ui/core';
 
-import { withRouter } from 'react-router-dom';
-
 import { fetchCountries } from '../../API';
 
 import styles from './CountryPicker.module.css';
@@ -34,4 +32,4 @@ const CountryPicker = ({handleCountryChange}) => {
     );
 };
 
-export default withRouter(CountryPicker);
+export default CountryPicker;

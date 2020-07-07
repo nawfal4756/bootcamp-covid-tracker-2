@@ -44,7 +44,7 @@ class App extends React.Component {
                         component={ () => 
                             <div className={styles.home}>
                                 <CardsSummary data={data} />
-                                <ChartsGlobal />
+                                <ChartsGlobal data={data} />
                             </div>
                         } 
                     />                           
